@@ -22,13 +22,28 @@ export function HeroBlock() {
         </p>
 
         <div className="flex items-center justify-center pb-5">
-            <Button className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg transition duration-300 px-20 py-6 text-lg rounded-lg font-semibold ease-in-out " asChild>
+            <Button className="bg-violet-600 hover:bg-indigo-700 text-white shadow-lg transition duration-300 px-20 py-6 text-lg rounded-lg font-semibold ease-in-out " asChild>
                 <Link href="/dashboard">
                 <Sparkles className="group-hover:rotate-12 transition-transform" />
                 Get Started
                 </Link>
                 </Button>
            {/* <Button size="lg" variant="outline" className="text-indigo-600 border-indigo-600 hover:bg-indigo-50">Learn More</Button>*/}
+        </div>
+        <div className="flex items-center gap-8 text-sm text-slate-200 justify-center">
+            <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"/>
+                5+ Interview Types
+            </div>
+            <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-primary rounded-full"/>
+                No credit card required
+            </div>
+            <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"/>
+                Instant feedback
+
+            </div>
         </div>
     </div>
   </section>
