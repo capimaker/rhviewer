@@ -1,6 +1,3 @@
-import { b } from "framer-motion/client";
-import { de } from "zod/locales";
-
 export const pricingPlans = [
     {
         name: 'Free',
