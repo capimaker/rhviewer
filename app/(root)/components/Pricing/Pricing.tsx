@@ -1,7 +1,6 @@
 import { pricingPlans } from "./Pricing.data";
 import { Button } from "@/components/ui/button";
 import {  Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { div } from "framer-motion/client";
 import { Check, Sparkles } from "lucide-react"; 
 import Link from "next/link";
 
