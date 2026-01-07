@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import {  Lato } from "next/font/google";
 import "./globals.css";
 
+import {
+  ClerkProvider,
+  
+} from '@clerk/nextjs'
+
 const lato = Lato({
   variable: "--font-lato",
   subsets: ["latin"],
@@ -21,12 +26,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <body
-        className={`${lato.className} antialiased`}
-      >
+        className={`${lato.className} antialiased`}>
+         
         {children}
       </body>
     </html>
+    </ClerkProvider>
   );
 }
