@@ -4,13 +4,16 @@ RViewer is a Next.js app with a marketing landing page and a dashboard shell for
 
 ## Tech Stack
 
-- Next.js (App Router) and React
+- Next.js (App Router) and React 19
 - TypeScript
 - Tailwind CSS v4 + PostCSS
 - shadcn/ui + Radix UI primitives
 - class-variance-authority + tailwind-merge + clsx for class composition
 - lucide-react icons
 - React Hook Form + Zod (form handling and validation)
+- Clerk for authentication
+- Prisma 7 with @prisma/adapter-pg
+- PostgreSQL (via pg)
 
 ## Getting Started
 
@@ -70,5 +73,9 @@ import { Button } from "@/components/ui/button"
 
 ## Notes
 
-- No environment variables are required by default.
+- Environment variables required for local development:
+  - DATABASE_URL
+  - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+  - CLERK_SECRET_KEY
+- Optional Clerk redirect envs can be set as needed.
 - Styling lives in `app/globals.css` and is composed with Tailwind utility classes.
