@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
 import { CheckCircle, Clock, TrendingUp, ClipboardCheck } from "lucide-react";
-import { MetricCard } from "./components";
+import { InterviewsList, MetricCard } from "./components";
 
 export default async function DashboardPage() {
   const { userId } = await auth();
@@ -54,5 +54,6 @@ export default async function DashboardPage() {
          </div>
         </div>
     </div>
+    <InterviewsList />
   </div>
 };

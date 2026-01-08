@@ -1,5 +1,7 @@
 "use client"
- 
+
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -29,10 +31,14 @@ import { Input } from "@/components/ui/input"
 import { formSchema } from "./FormCreateInterview.form"
 import { Link, Mic } from "lucide-react"
 import { difficulties, roles } from "./FormCreateInterview.data"
+import axios from "axios"
  
 
 
 export function FormCreateInterview() {
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,10 +48,18 @@ export function FormCreateInterview() {
     },
   })
  
- const onSubmit = (values: z.infer<typeof formSchema>) => {
-  
-    console.log(values)
-  }
+ const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  setIsLoading(true)
+  try{
+    const response = await axios.post("/api/create-interview", values)
+    router.push(`/interview${response.data.id}`)
+  } catch (error){
+    console.log(error)
+
+  }finally{
+    setIsLoading(false)
+   }
+  };
     return (   
          <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 text-black">
@@ -118,7 +132,7 @@ export function FormCreateInterview() {
             )}
             />
            
-        <Button type="submit" className="w-full bg-linear-to-r from-blue-600 to-purple-600 font-bold py-3 px rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300">
+        <Button type="submit" className="w-full bg-linear-to-r from-blue-600 to-purple-600 font-bold py-3 px rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300" disabled={isLoading}>
             Start Interview
             <Mic/>
         </Button>
