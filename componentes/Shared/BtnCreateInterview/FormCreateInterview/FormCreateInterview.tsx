@@ -52,7 +52,7 @@ export function FormCreateInterview() {
   setIsLoading(true)
   try{
     const response = await axios.post("/api/create-interview", values)
-    router.push(`/interview${response.data.id}`)
+    router.push(`/interview/${response.data.id}`)
   } catch (error){
     console.log(error)
 
