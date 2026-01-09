@@ -12,7 +12,7 @@ export  function InterviewImage(props: InterviewImageProps) {
         Devops: "bg-red-600/20 border-red-400/30 text-red-200",
         data: "bg-pink-600/20 border-gpink-400/30 text-pink-200",
         qa: "bg-rose-600/20 border-rose-400/30 text-rose-200",
-        pm: "bg-indigo-600/20 border-indigo-400/30 text-indigo-200",
+        product_portfolio_strategy: "bg-indigo-600/20 border-indigo-400/30 text-indigo-200",
 
 
     };
