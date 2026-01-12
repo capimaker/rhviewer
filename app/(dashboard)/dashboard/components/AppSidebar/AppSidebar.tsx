@@ -1,3 +1,5 @@
+"use client"
+
 import { Calendar, FlaskConical, Home, Inbox, ScrollText, Search, Settings, WalletCards } from "lucide-react"
 import {
   Sidebar,
@@ -11,9 +13,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Logo } from "@/componentes/Shared"
+import { Logo, StripeDialogPayment } from "@/componentes/Shared"
 import { BtnCreateInterview } from "@/componentes/Shared/BtnCreateInterview"
 import { AccessStatus } from "./AccessStatus"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 const items = [
   {
@@ -44,13 +48,32 @@ const items = [
 ]
 
 export function AppSidebar() {
+
+   const [hasPaid, setHasPaid] = useState<boolean | null>(null);
+  const [hasUsedFreeTrial, setHasUsedFreeTrial] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const fetchUserStatus = async () => {
+      try {
+        const res = await axios.get('/api/user/status')
+        setHasPaid(res.data.hasPaid)
+        setHasUsedFreeTrial(res.data.hasUsedFreeTrial)
+      }catch(error){
+        console.error("Error", error)
+      }
+    };
+    fetchUserStatus()
+  }, [])
+
   return (
     <Sidebar className="text-white">
       <SidebarHeader />
       <Logo />
       <SidebarContent>
         <SidebarGroup>
-          <BtnCreateInterview />
+          {(hasPaid || !hasUsedFreeTrial) && <BtnCreateInterview/>}
+          {!hasPaid && hasUsedFreeTrial && <StripeDialogPayment/>}
+
         </SidebarGroup>
         <SidebarGroup>
          {/*<SidebarGroupLabel></SidebarGroupLabel>*/}

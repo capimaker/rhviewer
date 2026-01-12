@@ -1,6 +1,6 @@
 'use client'
 import axios from "axios"
-import { BtnCreateInterview } from "@/componentes/Shared"
+import { BtnCreateInterview, StripeDialogPayment } from "@/componentes/Shared"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -13,6 +13,22 @@ export  function InterviewsList() {
   const [interviews, setInterviews] = useState<Interview[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const [hasPaid, setHasPaid] = useState<boolean | null>(null);
+  const [hasUsedFreeTrial, setHasUsedFreeTrial] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const fetchUserStatus = async () => {
+      try {
+        const res = await axios.get('/api/user/status')
+        setHasPaid(res.data.hasPaid)
+        setHasUsedFreeTrial(res.data.hasUsedFreeTrial)
+      }catch(error){
+        console.error("Error", error)
+      }
+    };
+    fetchUserStatus()
+  }, [])
 
   useEffect(() => {
     const fetchInterviews = async () => {
@@ -43,11 +59,14 @@ export  function InterviewsList() {
     <div className="flex justify-between items-center">
       <h2 className="text-2xl font-semibold">Last interviews</h2>
 
-      <BtnCreateInterview/>
+      {(hasPaid || !hasUsedFreeTrial) && <BtnCreateInterview/>}
+      {!hasPaid && hasUsedFreeTrial && <StripeDialogPayment/>}
+
+      
 
     </div>
     <div className="mt-4">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_60%_1fr_1fr_1fr] text-sm font-medium text-stale-200 mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)_auto] text-sm font-medium text-stale-200 mb-4">
         <p className="text-left">Date</p>
         <p>Lessons</p>
         <p className="text-left">Level</p>
@@ -60,17 +79,17 @@ export  function InterviewsList() {
        {!loading && interviews.length === 0 && <p>No interviews found</p>}
 
         {interviews.slice(0, 5).map((interview) => (
-          <div key={interview.id} className="grid grid-cols-1 gap-5 md:gap-0 md:grid-cols-[1fr_60%_1fr_1fr_1fr] items-center justify-between border-b pb-4 last:border-b-0 my-4">
+          <div key={interview.id} className="grid min-w-0 grid-cols-1 gap-5 lg:gap-0 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)_auto] items-center justify-between border-b pb-4 last:border-b-0 my-4">
 
             <span className="text-left text-sm text-white-70">
               {new Date(interview.startedAt).toLocaleDateString()}
               </span>
 
-            <div className="flex gap-4 items-center">
+            <div className="flex min-w-0 gap-4 items-center">
               <InterviewImage  interview={interview}/>
 
-              <div className="flex flex-col gap-1">
-                <h3 className="text-2xl font-semibold">{interview.name}</h3>
+              <div className="flex min-w-0 flex-col gap-1">
+                <h3 className="truncate text-2xl font-semibold">{interview.name}</h3>
               </div>
             </div>
            <span className={cn("text-xs px-2 py-1 rounded-full border w-fit", levelBadgeClasses[interview.level] )}>
@@ -81,7 +100,7 @@ export  function InterviewsList() {
             </span>
             <Button
               variant="ghost"
-              className="relative border border-blue-400/40 bg-blue-500/10 text-blue-100 shadow-[0_0_16px_rgba(59,130,246,0.45)] transition-shadow hover:bg-blue-500/20 hover:shadow-[0_0_24px_rgba(59,130,246,0.65)]"
+              className="relative justify-self-start lg:justify-self-end border border-blue-400/40 bg-blue-500/10 text-blue-100 shadow-[0_0_16px_rgba(59,130,246,0.45)] transition-shadow hover:bg-blue-500/20 hover:shadow-[0_0_24px_rgba(59,130,246,0.65)]"
               asChild
             >
               <Link href={`/dashboard/interview/${interview.id}`}>
