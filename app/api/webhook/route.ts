@@ -34,7 +34,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
                        },
                     });
                     await db.user.update({
-                        where: {id: userId},
+                        where: {userId: userId},
                         data: {
                             hasPaid: true,
                             paidAt: new Date(),

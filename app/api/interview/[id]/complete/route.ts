@@ -21,7 +21,7 @@ export async function POST(req: Request, {params}:{params: Promise<{id: string }
     });
 
     await db.user.update({
-        where: {id: user.id},
+        where: {userId: user.id},
         data: {
             hasUsedFreeTrial: true,
         }
