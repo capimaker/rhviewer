@@ -14,7 +14,7 @@ export const pricingPlans = [
     },
     {
         name: 'Pro',
-        price: '29/month', 
+        price: '9,99/month', 
         description: 'Perfect for professionals aiming to enhance their interview skills.',
         features: [
             'Access to advanced interview questions',
