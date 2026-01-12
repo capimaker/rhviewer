@@ -29,7 +29,7 @@ export  function UserBoxes(props: UserBoxesProps) {
                     ) } 
 
                     <div className="border-blue-200 bg-blue-100 border rounded-full p-2 relative z-10">
-                      <Image src="/assets/bot.png" alt="User bot" width={60} height={60} />
+                      <Image src="/assets/bot2.png" alt="User bot" width={60} height={60} className="rounded-full"/>
 
                     </div>
                 </div>
