@@ -57,7 +57,7 @@ export default function InterviewPage() {
     />
     <InfoCard 
     icon={Calendar}
-    name={new Date(interview.startedAt).toLocaleTimeString()}
+    name={new Date(interview.startedAt).toLocaleDateString("es-ES")}
     label="Date"
     />
     <InfoCard 

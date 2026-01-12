@@ -7,13 +7,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Form, Headset } from "lucide-react"
+import { Form, Headset, Zap } from "lucide-react"
 import { FormCreateInterview } from "./FormCreateInterview"
 export  function BtnCreateInterview() {
   return (
     <Dialog>
   <DialogTrigger asChild>
-    <Button className="bg-linear-to-r from-blue-600 to-purple-600 font-bold py-3 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300"> Create Interview</Button>
+    <Button className="bg-linear-to-r from-blue-600 to-purple-600 font-bold py-3 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300"> 
+      Create a New Interview <Zap/>
+      </Button>
   </DialogTrigger>
   <DialogContent>
     <DialogHeader>
