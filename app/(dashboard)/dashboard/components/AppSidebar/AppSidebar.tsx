@@ -22,7 +22,7 @@ import axios from "axios"
 const items = [
   {
     title: "Dashboard",
-    url: "#",
+    url: "/",
     icon: Home,
   },
   {
