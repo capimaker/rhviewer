@@ -6,7 +6,7 @@ export const roles = [
   { value: 'data', label: 'Data Scientist',  icon:"📊"},
   { value: 'mobile', label: 'Mobile Developer', icon:"📱" },
   { value: 'qa', label: 'QA Engineer', icon:"🩺" },
-  { value: 'product_portfolio_strategy', label: 'Product Portfolio Strategy Manager',  icon:"📋" },
+  { value: 'ppsm', label: 'Product Portfolio Strategy Manager',  icon:"📋" },
 ];  
 
 export const difficulties = [
